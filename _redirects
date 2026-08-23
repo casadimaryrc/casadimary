@@ -1,0 +1,8 @@
+# Redirect 301 permanente: casadimary.it -> lacasadimary.it
+# Il "!" forza la regola anche se esiste un file a quel percorso.
+# :splat conserva il percorso richiesto (es. /privacy.html resta /privacy.html).
+
+http://casadimary.it/*       https://lacasadimary.it/:splat   301!
+https://casadimary.it/*      https://lacasadimary.it/:splat   301!
+http://www.casadimary.it/*   https://lacasadimary.it/:splat   301!
+https://www.casadimary.it/*  https://lacasadimary.it/:splat   301!
