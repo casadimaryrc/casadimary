@@ -5,4 +5,4 @@ Disallow: /privacy-en.html
 Disallow: /cookies.html
 Disallow: /cookies-en.html
 
-Sitemap: https://lacasadimary.netlify.app/sitemap.xml
+Sitemap: https://lacasadimary.it/sitemap.xml
