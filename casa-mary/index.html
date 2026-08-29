@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Casa di Mary · Self Check-in</title>
+<meta name="description" content="Self check-in — La Casa di Mary, Via Sbarre Inferiori 131.">
+<style>
+  :root{
+    --green-900:#102a1d;
+    --green-800:#173a2a;
+    --green-700:#1f4a36;
+    --gold:#c6a44e;
+    --gold-soft:#d8bd78;
+    --cream:#f4efe4;
+    --card:#faf7f0;
+    --ink:#26271f;
+    --muted:#6f7263;
+    --line:#e3dcc9;
+    --shadow:0 18px 40px -22px rgba(16,42,29,.55);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 50% -10%, #1c4231 0%, var(--green-900) 60%) no-repeat,
+      var(--green-900);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:22px 20px 64px}
+
+  /* ---- language switch ---- */
+  .langbar{
+    display:flex;justify-content:flex-end;gap:6px;margin-bottom:26px;
+  }
+  .langbar button{
+    font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;font-weight:600;
+    text-transform:uppercase;color:var(--gold-soft);
+    background:transparent;border:1px solid rgba(198,164,78,.45);
+    padding:7px 12px;border-radius:999px;cursor:pointer;transition:.18s ease;
+  }
+  .langbar button:hover{border-color:var(--gold);color:#fff}
+  .langbar button[aria-pressed="true"]{
+    background:var(--gold);border-color:var(--gold);color:var(--green-900);
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    background:var(--green-800);
+    border:1px solid rgba(198,164,78,.35);
+    border-radius:18px;
+    box-shadow:var(--shadow), inset 0 0 0 4px rgba(198,164,78,.18);
+    padding:46px 28px 40px;text-align:center;position:relative;
+  }
+  .hero .mark{color:var(--gold-soft);font-size:.78rem;letter-spacing:.34em;margin-bottom:18px}
+  .hero h1{
+    font-family:var(--serif);color:var(--gold);
+    font-size:clamp(1.9rem,7vw,3rem);font-weight:600;
+    letter-spacing:.16em;margin:0;line-height:1.1;text-transform:uppercase;
+  }
+  .hero .sub{
+    color:var(--gold-soft);font-style:italic;font-family:var(--serif);
+    letter-spacing:.18em;text-transform:uppercase;font-size:.86rem;margin:14px 0 22px;
+  }
+  .hero .addr{
+    color:#eef3ec;font-size:1.02rem;letter-spacing:.02em;
+    padding-top:18px;border-top:1px solid rgba(198,164,78,.28);
+    display:inline-block;
+  }
+  .diamond{display:flex;align-items:center;gap:14px;color:rgba(198,164,78,.5);margin:34px 4px}
+  .diamond::before,.diamond::after{content:"";height:1px;background:rgba(198,164,78,.4);flex:1}
+  .diamond span{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);border-radius:1px}
+
+  /* ---- steps / timeline ---- */
+  .steps{position:relative;padding-left:8px}
+  .step{position:relative;padding:0 0 30px 64px;}
+  /* spine */
+  .step::before{
+    content:"";position:absolute;left:23px;top:6px;bottom:-6px;width:2px;
+    background:linear-gradient(rgba(198,164,78,.55),rgba(198,164,78,.18));
+  }
+  .step:last-child::before{display:none}
+  .node{
+    position:absolute;left:0;top:0;width:48px;height:48px;border-radius:12px;
+    background:var(--green-800);border:2px solid var(--gold);
+    color:var(--gold);font-family:var(--serif);font-weight:700;font-size:1.4rem;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px -8px rgba(0,0,0,.6);z-index:1;
+  }
+  .card{
+    background:var(--card);border-radius:14px;box-shadow:var(--shadow);
+    overflow:hidden;border:1px solid var(--line);
+  }
+  .card .head{
+    background:linear-gradient(180deg,var(--gold),#b9933a);
+    color:var(--green-900);padding:11px 18px;
+    font-weight:800;letter-spacing:.04em;font-size:1.02rem;text-transform:uppercase;
+  }
+  .card .eyebrow{
+    display:block;font-family:var(--sans);font-weight:700;font-size:.62rem;
+    letter-spacing:.22em;color:rgba(16,42,29,.65);margin-bottom:1px;
+  }
+  .card .body{padding:16px 18px 4px;color:#34362c;font-size:1rem}
+  .card .body strong{color:var(--green-700);font-weight:700}
+  figure{margin:14px 0 0;background:var(--green-800);padding:14px}
+  figure img{display:block;width:100%;height:auto;border-radius:8px;border:2px solid rgba(198,164,78,.5)}
+  figcaption{
+    color:var(--gold-soft);font-style:italic;font-family:var(--serif);
+    text-align:center;font-size:.9rem;padding-top:11px;
+  }
+
+  /* ---- closing callout ---- */
+  .callout{
+    margin-top:8px;text-align:center;
+    background:linear-gradient(180deg,var(--gold),#b9933a);
+    color:var(--green-900);font-weight:800;letter-spacing:.03em;
+    padding:18px 22px;border-radius:14px;font-size:1.06rem;
+    box-shadow:var(--shadow);
+  }
+  .closing{
+    text-align:center;color:var(--gold-soft);font-family:var(--serif);
+    font-style:italic;letter-spacing:.16em;font-size:1.05rem;margin-top:26px;
+  }
+  footer{text-align:center;color:rgba(238,243,236,.45);font-size:.74rem;margin-top:40px;letter-spacing:.04em}
+
+  /* ---- map ---- */
+  .mapwrap{
+    background:var(--green-800);border:1px solid rgba(198,164,78,.35);
+    border-radius:16px;box-shadow:var(--shadow);overflow:hidden;margin:0 0 30px;
+  }
+  .mapwrap .maphead{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 18px;flex-wrap:wrap;
+  }
+  .mapwrap .maphead .ttl{color:var(--gold);font-family:var(--serif);font-size:1.3rem;letter-spacing:.04em}
+  .mapwrap .maphead .ey{display:block;color:rgba(216,189,120,.8);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:2px}
+  .mapwrap iframe{display:block;width:100%;height:300px;border:0;filter:saturate(.95)}
+  .map-btn{
+    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+    background:var(--gold);color:var(--green-900);font-weight:700;font-size:.85rem;
+    padding:9px 15px;border-radius:999px;text-decoration:none;transition:.18s ease;
+  }
+  .map-btn:hover{background:var(--gold-soft)}
+  .map-btn svg{width:15px;height:15px}
+
+  /* ---- contact (whatsapp / call) ---- */
+  .contact{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:22px;text-align:center;margin-top:8px;
+  }
+  .contact .ey{display:block;color:rgba(16,42,29,.6);font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px}
+  .contact p{margin:0 0 16px;color:#34362c;font-weight:600;font-size:1.05rem}
+  .contact .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .contact .alt-note{margin:16px 0 0;color:var(--muted);font-size:.92rem;font-weight:500}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+    font-weight:700;font-size:1rem;padding:13px 22px;border-radius:999px;transition:.18s ease;
+  }
+  .btn svg{width:20px;height:20px;flex:none}
+  .btn-wa{background:#25d366;color:#06351b}
+  .btn-wa:hover{background:#1fbe5a}
+  .btn-call{background:var(--green-700);color:#fff}
+  .btn-call:hover{background:var(--green-800)}
+
+  /* reveal */
+  .step,.contact{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .step.in,.contact.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .step,.contact{opacity:1;transform:none;transition:none}
+  }
+  @media (max-width:480px){
+    .step{padding-left:56px}
+    .node{width:42px;height:42px;font-size:1.2rem}
+    .step::before{left:20px}
+    .hero{padding:38px 20px 32px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="langbar" aria-label="Language / Lingua / Langue">
+    <button data-lang="it" lang="it" aria-pressed="true">Italiano</button>
+    <button data-lang="en" lang="en" aria-pressed="false">English</button>
+    <button data-lang="fr" lang="fr" aria-pressed="false">Français</button>
+    <button data-lang="de" lang="de" aria-pressed="false">Deutsch</button>
+  </nav>
+
+  <header class="hero">
+    <div class="mark">✦ &nbsp; ✦ &nbsp; ✦ &nbsp; ✦ &nbsp; ✦</div>
+    <h1>La Casa di Mary</h1>
+    <div class="sub" data-i="sub">Self Check-in</div>
+    <span class="addr">Via Sbarre Inferiori, 131 · Reggio Calabria</span>
+  </header>
+
+  <div class="diamond"><span></span></div>
+
+  <section class="mapwrap">
+    <div class="maphead">
+      <div><span class="ey" data-i="mapEy">Posizione</span><span class="ttl" data-i="mapTtl">Come arrivare</span></div>
+      <a class="map-btn" data-i-href="mapsLink"
+         href="https://www.google.com/maps/search/?api=1&query=Via%20Sbarre%20Inferiori%20131%2C%20Reggio%20Calabria"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span data-i="openMaps">Apri in Maps</span>
+      </a>
+    </div>
+    <iframe
+      src="https://maps.google.com/maps?q=Via%20Sbarre%20Inferiori%20131%2C%20Reggio%20Calabria&z=16&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Mappa — Via Sbarre Inferiori 131, Reggio Calabria"></iframe>
+  </section>
+
+  <main class="steps" id="steps">
+
+    <section class="step">
+      <div class="node">1</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 1</span><span data-i="t1">Il palazzo</span></div>
+        <div class="body"><p data-i="d1"></p></div>
+        <figure><img src="images/palazzo.jpg" alt="" data-alt="c1">
+          <figcaption data-i="c1"></figcaption></figure>
+      </article>
+    </section>
+
+    <section class="step">
+      <div class="node">2</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 2</span><span data-i="t2">Entra nel palazzo</span></div>
+        <div class="body"><p data-i="d2"></p></div>
+        <figure><img src="images/portone.jpg" alt="" data-alt="c2">
+          <figcaption data-i="c2"></figcaption></figure>
+      </article>
+    </section>
+
+    <section class="step">
+      <div class="node">3</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 3</span><span data-i="t3">Il citofono</span></div>
+        <div class="body"><p data-i="d3"></p></div>
+        <figure><img src="images/citofono.jpg" alt="" data-alt="c3">
+          <figcaption data-i="c3"></figcaption></figure>
+      </article>
+    </section>
+
+    <section class="step">
+      <div class="node">4</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 4</span><span data-i="t4">Sali al primo piano</span></div>
+        <div class="body"><p data-i="d4"></p></div>
+        <figure><img src="images/porta.jpg" alt="" data-alt="c4">
+          <figcaption data-i="c4"></figcaption></figure>
+      </article>
+    </section>
+
+    <section class="step">
+      <div class="node">5</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 5</span><span data-i="t5">Apri con la keybox</span></div>
+        <div class="body"><p data-i="d5"></p></div>
+      </article>
+    </section>
+
+    <section class="step">
+      <div class="node">6</div>
+      <article class="card">
+        <div class="head"><span class="eyebrow" data-i="tappa">Tappa 6</span><span data-i="t6">Parcheggio</span></div>
+        <div class="body"><p data-i="d6"></p></div>
+        <figure><img src="images/parcheggio.jpg" alt="" data-alt="c6">
+          <figcaption data-i="c6"></figcaption></figure>
+      </article>
+    </section>
+
+  </main>
+
+  <section class="contact">
+    <span class="ey" data-i="contactEy">Avvisami</span>
+    <p data-i="notice"></p>
+    <div class="btns">
+      <a class="btn btn-wa" id="waBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.04 3C9.42 3 4.04 8.38 4.04 15c0 2.1.55 4.13 1.6 5.92L4 29l8.27-1.6A11.9 11.9 0 0 0 16.04 27C22.66 27 28 21.62 28 15S22.66 3 16.04 3zm0 21.6c-1.9 0-3.76-.5-5.39-1.46l-.39-.23-4.9.95.96-4.78-.25-.4A9.6 9.6 0 0 1 6.4 15c0-5.32 4.33-9.6 9.64-9.6 5.32 0 9.6 4.28 9.6 9.6 0 5.31-4.28 9.6-9.6 9.6zm5.27-7.2c-.29-.15-1.71-.84-1.98-.94-.27-.1-.46-.15-.65.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.7-1.6-1.99-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.5.07-.77.36-.27.29-1.01.99-1.01 2.41s1.04 2.8 1.18 2.99c.15.19 2.04 3.12 4.95 4.38.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34z"/></svg>
+        <span data-i="btnWa">WhatsApp</span>
+      </a>
+    </div>
+    <p class="alt-note" data-i="airbnb"></p>
+  </section>
+  <p class="closing" data-i="welcome"></p>
+
+  <footer>La Casa di Mary · CIN IT080063C20E90IFAH</footer>
+</div>
+
+<script>
+const I18N = {
+  it:{
+    title:"La Casa di Mary · Self Check-in",
+    sub:"Self Check-in",
+    tappaWord:"Tappa",
+    t1:"Il palazzo",
+    d1:'Arriva in <strong>Via Sbarre Inferiori 131</strong>. Questo è il palazzo dove si trova l\u2019appartamento.',
+    c1:"Vista esterna del palazzo",
+    t2:"Entra nel palazzo",
+    d2:'Al portone suona al citofono cercando <strong>«La Casa di Mary»</strong>. Ti aprirò da remoto.',
+    c2:"Portone d\u2019ingresso",
+    t3:"Il citofono",
+    d3:'Sulla pulsantiera trovi la targhetta <strong>«La Casa di Mary»</strong>. Suona lì e attendi.',
+    c3:"Citofono — cerca «La Casa di Mary»",
+    t4:"Sali al primo piano",
+    d4:'Sali al <strong>Piano 1</strong> (scale o ascensore). L\u2019appartamento è <strong>di fronte all\u2019ascensore</strong>. L\u2019interruttore luci è a sinistra della porta.',
+    c4:"La porta dell\u2019appartamento — Piano 1",
+    t5:"Apri con la keybox",
+    d5:'Dopo il riconoscimento visivo riceverai il <strong>codice della keybox</strong>. Preleva le chiavi e usa <strong>la chiave più grande</strong> per aprire la porta.',
+    t6:"Parcheggio",
+    d6:'È disponibile un <strong>posto auto privato</strong>. Lascia spazio per manovrare: non oltre il muro, né davanti né dietro.',
+    c6:"Posto auto privato riservato",
+    notice:"Avvisami circa 30 minuti prima dell\u2019arrivo, così ti apro e ti accolgo.",
+    contactEy:"Avvisami",
+    btnWa:"WhatsApp",
+    btnCall:"Chiama",
+    airbnb:"Oppure mandami un messaggio tramite la chat di Airbnb.",
+    waMsg:"Ciao! Arrivo tra circa 30 minuti alla Casa di Mary.",
+    mapEy:"Posizione",
+    mapTtl:"Come arrivare",
+    openMaps:"Apri in Maps",
+    welcome:"Benvenuto · Buon soggiorno"
+  },
+  en:{
+    title:"La Casa di Mary · Self Check-in",
+    sub:"Self Check-in",
+    tappaWord:"Step",
+    t1:"The building",
+    d1:'Arrive at <strong>Via Sbarre Inferiori 131</strong>. This is the building where the apartment is located.',
+    c1:"Exterior view of the building",
+    t2:"Enter the building",
+    d2:'At the main door, ring the intercom for <strong>“La Casa di Mary”</strong>. I\u2019ll open it remotely.',
+    c2:"Main entrance door",
+    t3:"The intercom",
+    d3:'On the panel you\u2019ll find the <strong>“La Casa di Mary”</strong> nameplate. Ring there and wait.',
+    c3:"Intercom — look for “La Casa di Mary”",
+    t4:"Go up to the first floor",
+    d4:'Go up to <strong>Floor 1</strong> (one floor up — stairs or lift). The apartment is <strong>directly opposite the lift</strong>. The light switch is to the left of the door.',
+    c4:"The apartment door — Floor 1",
+    t5:"Open with the keybox",
+    d5:'After the video identity check you\u2019ll receive the <strong>keybox code</strong>. Take the keys and use <strong>the largest key</strong> to open the door.',
+    t6:"Parking",
+    d6:'A <strong>private parking space</strong> is available. Leave room to manoeuvre: don\u2019t go past the wall, either in front or behind.',
+    c6:"Reserved private parking space",
+    notice:"Please let me know about 30 minutes before you arrive, so I can let you in and welcome you.",
+    contactEy:"Let me know",
+    btnWa:"WhatsApp",
+    btnCall:"Call",
+    airbnb:"Or send me a message through the Airbnb chat.",
+    waMsg:"Hi! I'll arrive at Casa di Mary in about 30 minutes.",
+    mapEy:"Location",
+    mapTtl:"How to get there",
+    openMaps:"Open in Maps",
+    welcome:"Welcome · Enjoy your stay"
+  },
+  fr:{
+    title:"La Casa di Mary · Arrivée autonome",
+    sub:"Arrivée autonome",
+    tappaWord:"Étape",
+    t1:"L\u2019immeuble",
+    d1:'Rendez-vous au <strong>131 Via Sbarre Inferiori</strong>. C\u2019est l\u2019immeuble où se trouve l\u2019appartement.',
+    c1:"Vue extérieure de l\u2019immeuble",
+    t2:"Entrer dans l\u2019immeuble",
+    d2:'À la porte, sonnez à l\u2019interphone en cherchant <strong>«\u00a0La Casa di Mary\u00a0»</strong>. Je vous ouvrirai à distance.',
+    c2:"Porte d\u2019entrée",
+    t3:"L\u2019interphone",
+    d3:'Sur le tableau, vous trouverez la plaque <strong>«\u00a0La Casa di Mary\u00a0»</strong>. Sonnez à cet endroit et patientez.',
+    c3:"Interphone — cherchez «\u00a0La Casa di Mary\u00a0»",
+    t4:"Montez au premier étage",
+    d4:'Montez au <strong>1<sup>er</sup> étage</strong> (escaliers ou ascenseur). L\u2019appartement est <strong>juste en face de l\u2019ascenseur</strong>. L\u2019interrupteur se trouve à gauche de la porte.',
+    c4:"La porte de l\u2019appartement — 1er étage",
+    t5:"Ouvrez avec la boîte à clés",
+    d5:'Après la vérification visuelle, vous recevrez le <strong>code de la boîte à clés</strong>. Prenez les clés et utilisez <strong>la plus grande clé</strong> pour ouvrir la porte.',
+    t6:"Stationnement",
+    d6:'Une <strong>place de parking privée</strong> est disponible. Laissez de l\u2019espace pour manœuvrer\u00a0: ne dépassez pas le mur, ni devant ni derrière.',
+    c6:"Place de parking privée réservée",
+    notice:"Prévenez-moi environ 30 minutes avant votre arrivée, afin que je puisse vous ouvrir et vous accueillir.",
+    contactEy:"Prévenez-moi",
+    btnWa:"WhatsApp",
+    btnCall:"Appeler",
+    airbnb:"Ou envoyez-moi un message via la messagerie Airbnb.",
+    waMsg:"Bonjour ! J\u2019arrive à la Casa di Mary dans environ 30 minutes.",
+    mapEy:"Emplacement",
+    mapTtl:"Itinéraire",
+    openMaps:"Ouvrir dans Maps",
+    welcome:"Bienvenue · Bon séjour"
+  },
+  de:{
+    title:"La Casa di Mary · Self-Check-in",
+    sub:"Self-Check-in",
+    tappaWord:"Schritt",
+    t1:"Das Gebäude",
+    d1:'Kommen Sie zur <strong>Via Sbarre Inferiori 131</strong>. Das ist das Gebäude, in dem sich die Wohnung befindet.',
+    c1:"Außenansicht des Gebäudes",
+    t2:"Betreten Sie das Gebäude",
+    d2:'Klingeln Sie an der Tür über die Gegensprechanlage bei <strong>„La Casa di Mary“</strong>. Ich öffne Ihnen aus der Ferne.',
+    c2:"Eingangstür",
+    t3:"Die Gegensprechanlage",
+    d3:'Auf dem Tableau finden Sie das Schild <strong>„La Casa di Mary“</strong>. Klingeln Sie dort und warten Sie.',
+    c3:"Gegensprechanlage — suchen Sie „La Casa di Mary“",
+    t4:"Gehen Sie in den ersten Stock",
+    d4:'Gehen Sie in den <strong>1. Stock</strong> (Treppe oder Aufzug). Die Wohnung liegt <strong>direkt gegenüber dem Aufzug</strong>. Der Lichtschalter befindet sich links neben der Tür.',
+    c4:"Die Wohnungstür — 1. Stock",
+    t5:"Öffnen mit der Schlüsselbox",
+    d5:'Nach der visuellen Überprüfung erhalten Sie den <strong>Code der Schlüsselbox</strong>. Nehmen Sie die Schlüssel und öffnen Sie die Tür mit dem <strong>größten Schlüssel</strong>.',
+    t6:"Parkplatz",
+    d6:'Ein <strong>privater Stellplatz</strong> steht zur Verfügung. Lassen Sie genug Platz zum Rangieren: nicht über die Mauer hinaus, weder vorne noch hinten.',
+    c6:"Reservierter privater Stellplatz",
+    notice:"Bitte benachrichtigen Sie mich etwa 30 Minuten vor Ihrer Ankunft, damit ich Ihnen öffnen und Sie empfangen kann.",
+    contactEy:"Benachrichtigen",
+    btnWa:"WhatsApp",
+    btnCall:"Anrufen",
+    airbnb:"Oder schreiben Sie mir eine Nachricht über den Airbnb-Chat.",
+    waMsg:"Hallo! Ich komme in etwa 30 Minuten an der Casa di Mary an.",
+    mapEy:"Standort",
+    mapTtl:"Anfahrt",
+    openMaps:"In Maps öffnen",
+    welcome:"Willkommen · Angenehmen Aufenthalt"
+  }
+};
+
+function setLang(lang){
+  const t = I18N[lang]; if(!t) return;
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  // step numbers in eyebrow
+  let stepNo = 0;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const key = el.getAttribute('data-i');
+    if(key === 'tappa'){ stepNo++; el.textContent = t.tappaWord + ' ' + stepNo; return; }
+    if(t[key] !== undefined) el.innerHTML = t[key];
+  });
+  // alt text from captions
+  document.querySelectorAll('[data-alt]').forEach(img=>{
+    const k = img.getAttribute('data-alt');
+    if(t[k]) img.alt = t[k].replace(/<[^>]+>/g,'');
+  });
+  // WhatsApp link with prefilled message in the chosen language
+  const PHONE = "393203176419";
+  const wa = document.getElementById('waBtn');
+  if(wa) wa.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(t.waMsg);
+  document.querySelectorAll('.langbar button').forEach(b=>{
+    b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false');
+  });
+  try{ localStorage.setItem('lcdm-lang', lang); }catch(e){}
+}
+
+document.querySelectorAll('.langbar button').forEach(b=>{
+  b.addEventListener('click', ()=> setLang(b.dataset.lang));
+});
+
+// initial language: saved > browser > italian
+let start = 'it';
+try{ const s = localStorage.getItem('lcdm-lang'); if(s) start = s; }catch(e){}
+if(start === 'it'){
+  const n = (navigator.language||'it').slice(0,2).toLowerCase();
+  if(['it','en','fr'].includes(n)) start = n;
+}
+setLang(start);
+
+// scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.step,.contact').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
