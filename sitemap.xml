@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://lacasadimary.it/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -16,7 +16,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-en.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -28,7 +28,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-fr.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-de.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -48,6 +48,26 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/index-fr.html" />
     <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/index-de.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/atp-finals-reggio-calabria.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/atp-finals-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/atp-finals-reggio-calabria-en.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/atp-finals-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
   </url>
 
 </urlset>
