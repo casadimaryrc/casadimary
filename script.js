@@ -1,28 +1,35 @@
 /* Casa di Mary — micro-interactions */
 
+/* ---------- Statistiche (Umami, senza cookie) ----------
+   Eventi inviati: prenota_click, modulo_iniziato, modulo_errore, modulo_inviato,
+   whatsapp_click, email_click, maps_click, atp_click, lingua_click.
+   Mai inviati dati personali del modulo. */
+const cdmTrack = (name, data) => {
+  try { if (window.umami && typeof window.umami.track === 'function') window.umami.track(name, data); } catch (_) {}
+};
+
 (() => {
   /* ---------- Experience switcher (booking form) ---------- */
   const form = document.getElementById('bookForm');
   const formTitle = document.getElementById('formTitle');
-  const isENPage = document.documentElement.lang === 'en';
+  /* Lingua della pagina: it (default), en, fr, de */
+  const LANG = (['en', 'fr', 'de'].includes((document.documentElement.lang || '').slice(0, 2)))
+    ? document.documentElement.lang.slice(0, 2) : 'it';
+  const isENPage = LANG === 'en';
+  const TITLES = {
+    it: { apartment: 'Richiedi disponibilità',       medusa: 'Riserva la Medusa Suite' },
+    en: { apartment: 'Request availability',         medusa: 'Reserve the Medusa Suite' },
+    fr: { apartment: 'Demander les disponibilités',  medusa: 'Réserver la Medusa Suite' },
+    de: { apartment: 'Verfügbarkeit anfragen',       medusa: 'Die Medusa Suite reservieren' }
+  };
   const setExperience = (val) => {
     if (!form) return;
     const radio = form.querySelector(`input[name="experience"][value="${val}"]`);
     if (radio) radio.checked = true;
-    if (formTitle) {
-      if (isENPage) {
-        formTitle.textContent = val === 'medusa'
-          ? 'Reserve the Medusa Suite'
-          : 'Request availability';
-      } else {
-        formTitle.textContent = val === 'medusa'
-          ? 'Riserva la Medusa Suite'
-          : 'Richiedi disponibilità';
-      }
-    }
+    if (formTitle) formTitle.textContent = TITLES[LANG][val === 'medusa' ? 'medusa' : 'apartment'];
   };
   document.querySelectorAll('[data-book]').forEach(btn => {
-    btn.addEventListener('click', () => setExperience(btn.dataset.book));
+    btn.addEventListener('click', () => { setExperience(btn.dataset.book); cdmTrack('prenota_click', { esperienza: btn.dataset.book }); });
   });
   form?.querySelectorAll('input[name="experience"]').forEach(r => {
     r.addEventListener('change', e => setExperience(e.target.value));
@@ -34,41 +41,39 @@
   const fmtDate = (s) => {
     if (!s) return '';
     const [y, m, d] = s.split('-');
-    return isEN ? `${m}/${d}/${y}` : `${d}/${m}/${y}`;
+    if (LANG === 'en') return `${m}/${d}/${y}`;
+    if (LANG === 'de') return `${d}.${m}.${y}`;
+    return `${d}/${m}/${y}`;
   };
   const fieldVal = (id) => {
     const el = document.getElementById(id);
     return el ? el.value.trim() : '';
   };
-  const T = isEN ? {
-    intro:     'Hello, I would like to check availability at Casa di Mary.',
-    apartment: 'Whole Apartment (up to 6 guests)',
-    medusa:    'Medusa Suite (experience for two)',
-    exp:       'Experience',
-    name:      'Name',
-    email:     'Email',
-    phone:     'Phone',
-    checkin:   'Check-in',
-    checkout:  'Check-out',
-    guests:    'Guests',
-    msg:       'Message',
-    thanks:    'Thank you!',
-    sent:      'Opened in WhatsApp ✓'
-  } : {
-    intro:     'Buongiorno, vorrei richiedere disponibilità per Casa di Mary.',
-    apartment: 'Intero Appartamento (fino a 6 ospiti)',
-    medusa:    'Medusa Suite (esperienza per due)',
-    exp:       'Esperienza',
-    name:      'Nome',
-    email:     'Email',
-    phone:     'Telefono',
-    checkin:   'Check-in',
-    checkout:  'Check-out',
-    guests:    'Ospiti',
-    msg:       'Messaggio',
-    thanks:    'Grazie!',
-    sent:      'Aperto su WhatsApp ✓'
+  /* Testi del messaggio WhatsApp: arrivano a Mary nella lingua dell'ospite,
+     così sa subito in che lingua rispondere. */
+  const TEXTS = {
+    it: { intro: 'Buongiorno, vorrei richiedere disponibilità per Casa di Mary.',
+          apartment: 'Intero Appartamento (fino a 6 ospiti)', medusa: 'Medusa Suite (esperienza per due)',
+          exp: 'Esperienza', name: 'Nome', email: 'Email', phone: 'Telefono',
+          checkin: 'Check-in', checkout: 'Check-out', guests: 'Ospiti', msg: 'Messaggio',
+          thanks: 'Grazie!', sent: 'Aperto su WhatsApp ✓' },
+    en: { intro: 'Hello, I would like to check availability at Casa di Mary.',
+          apartment: 'Whole Apartment (up to 6 guests)', medusa: 'Medusa Suite (experience for two)',
+          exp: 'Experience', name: 'Name', email: 'Email', phone: 'Phone',
+          checkin: 'Check-in', checkout: 'Check-out', guests: 'Guests', msg: 'Message',
+          thanks: 'Thank you!', sent: 'Opened in WhatsApp ✓' },
+    fr: { intro: 'Bonjour, je souhaiterais connaître les disponibilités de Casa di Mary.',
+          apartment: 'Appartement entier (jusqu\'à 6 personnes)', medusa: 'Medusa Suite (expérience pour deux)',
+          exp: 'Formule', name: 'Nom', email: 'E-mail', phone: 'Téléphone',
+          checkin: 'Arrivée', checkout: 'Départ', guests: 'Personnes', msg: 'Message',
+          thanks: 'Merci !', sent: 'Ouvert dans WhatsApp ✓' },
+    de: { intro: 'Guten Tag, ich möchte die Verfügbarkeit für Casa di Mary anfragen.',
+          apartment: 'Ganze Wohnung (bis zu 6 Gäste)', medusa: 'Medusa Suite (Erlebnis zu zweit)',
+          exp: 'Unterkunft', name: 'Name', email: 'E-Mail', phone: 'Telefon',
+          checkin: 'Anreise', checkout: 'Abreise', guests: 'Gäste', msg: 'Nachricht',
+          thanks: 'Vielen Dank!', sent: 'In WhatsApp geöffnet ✓' }
   };
+  const T = TEXTS[LANG];
   const buildWhatsAppMessage = () => {
     const expEl = form?.querySelector('input[name="experience"]:checked');
     const exp = expEl ? expEl.value : 'apartment';
@@ -98,15 +103,21 @@
     return L.join('\n');
   };
   /* Localized validity messages */
-  const V = isEN ? {
-    nameRequired: 'Please enter your name.',
-    mailRequired: 'Please enter your e-mail address.',
-    mailInvalid:  'Please enter a valid e-mail address (e.g. name@example.com).'
-  } : {
-    nameRequired: 'Inserisci il tuo nome.',
-    mailRequired: 'Inserisci il tuo indirizzo e-mail.',
-    mailInvalid:  'Inserisci un indirizzo e-mail valido (es. nome@esempio.com).'
+  const VALID = {
+    it: { nameRequired: 'Inserisci il tuo nome.',
+          mailRequired: 'Inserisci il tuo indirizzo e-mail.',
+          mailInvalid:  'Inserisci un indirizzo e-mail valido (es. nome@esempio.com).' },
+    en: { nameRequired: 'Please enter your name.',
+          mailRequired: 'Please enter your e-mail address.',
+          mailInvalid:  'Please enter a valid e-mail address (e.g. name@example.com).' },
+    fr: { nameRequired: 'Veuillez indiquer votre nom.',
+          mailRequired: 'Veuillez indiquer votre adresse e-mail.',
+          mailInvalid:  'Veuillez indiquer une adresse e-mail valide (ex. nom@exemple.fr).' },
+    de: { nameRequired: 'Bitte geben Sie Ihren Namen ein.',
+          mailRequired: 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
+          mailInvalid:  'Bitte geben Sie eine gültige E-Mail-Adresse ein (z. B. name@beispiel.de).' }
   };
+  const V = VALID[LANG];
   const nameEl = document.getElementById('f-name');
   const mailEl = document.getElementById('f-mail');
   const setValidityMessages = () => {
@@ -131,8 +142,19 @@
     if (!nameEl.value.trim() || !mailEl.value.trim() || !mailEl.checkValidity()) {
       nameEl.reportValidity();
       mailEl.reportValidity();
+      cdmTrack('modulo_errore');
       return;
     }
+    const expSel = form.querySelector('input[name="experience"]:checked');
+    let notti = '';
+    const vIn = fieldVal('f-in'), vOut = fieldVal('f-out');
+    if (vIn && vOut) notti = Math.round((new Date(vOut) - new Date(vIn)) / 864e5);
+    cdmTrack('modulo_inviato', {
+      esperienza: expSel ? expSel.value : 'apartment',
+      ospiti: fieldVal('f-guests') || 'n.d.',
+      notti: notti === '' ? 'n.d.' : notti,
+      mese_arrivo: vIn ? vIn.slice(0, 7) : 'n.d.'
+    });
     const url = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
     window.open(url, '_blank', 'noopener');
 
@@ -150,6 +172,29 @@
         btn.style.cursor = '';
       }, 3000);
     }
+  });
+
+  /* ---------- Statistiche: inizio compilazione modulo ---------- */
+  let formStarted = false;
+  form?.addEventListener('input', () => {
+    if (formStarted) return;
+    formStarted = true;
+    cdmTrack('modulo_iniziato');
+  });
+
+  /* ---------- Statistiche: clic sui link principali ---------- */
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const zona = (a.closest('section[id], footer, nav, header') || {}).id
+      || (a.closest('footer') ? 'footer' : a.closest('nav') ? 'menu' : 'altro');
+    if (href.includes('wa.me/')) cdmTrack('whatsapp_click', { zona });
+    else if (href.startsWith('mailto:')) cdmTrack('email_click', { zona });
+    else if (href.includes('maps.google.') || href.includes('google.com/maps')) cdmTrack('maps_click', { zona });
+    else if (href.includes('atp-finals-reggio-calabria')) cdmTrack('atp_click', { zona });
+    else if (a.hasAttribute('hreflang')) cdmTrack('lingua_click', { verso: a.getAttribute('hreflang') });
+    else if (href.endsWith('#contatti') && !a.hasAttribute('data-book')) cdmTrack('prenota_click', { esperienza: 'non scelta', zona });
   });
 
   /* ---------- Date constraints (check-in / check-out) ---------- */
@@ -184,7 +229,7 @@
     iframe.src = src;
     iframe.loading = 'lazy';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.title = isEN ? 'Casa di Mary map' : 'Mappa Casa di Mary';
+    iframe.title = { it: 'Mappa Casa di Mary', en: 'Casa di Mary map', fr: 'Plan Casa di Mary', de: 'Karte Casa di Mary' }[LANG];
     mapWrap.appendChild(iframe);
     mapWrap.dataset.loaded = '1';
   };
