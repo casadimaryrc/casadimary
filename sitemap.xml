@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://lacasadimary.it/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -16,7 +16,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-en.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -28,7 +28,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-fr.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://lacasadimary.it/index-de.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/" />
@@ -68,6 +68,55 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/atp-finals-reggio-calabria.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/atp-finals-reggio-calabria-en.html" />
+  </url>
+
+
+  <url>
+    <loc>https://lacasadimary.it/medusa-suite-reggio-calabria.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/medusa-suite-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/medusa-suite-reggio-calabria-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/medusa-suite-reggio-calabria-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/medusa-suite-reggio-calabria-en.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/medusa-suite-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/medusa-suite-reggio-calabria-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/medusa-suite-reggio-calabria-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/medusa-suite-reggio-calabria-fr.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/medusa-suite-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/medusa-suite-reggio-calabria-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/medusa-suite-reggio-calabria-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/medusa-suite-reggio-calabria-de.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/medusa-suite-reggio-calabria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/medusa-suite-reggio-calabria-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/medusa-suite-reggio-calabria-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
   </url>
 
 </urlset>
