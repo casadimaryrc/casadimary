@@ -1281,3 +1281,11 @@ section { padding: clamp(70px, 9vw, 130px) clamp(20px, 4vw, 56px); }
   }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* ---------- ATP Finals banner ---------- */
+.atp-banner { background: var(--accent-2); color: #fff; }
+.atp-banner__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 18px 24px; }
+.atp-banner__text { margin: 0; font-size: 1rem; line-height: 1.45; }
+.atp-banner__link { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.atp-banner__link:hover { color: var(--gold); }
+@media (max-width: 560px) { .atp-banner__link { white-space: normal; } }
