@@ -119,4 +119,53 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/medusa-suite-reggio-calabria-en.html" />
   </url>
 
+
+  <url>
+    <loc>https://lacasadimary.it/faq.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/faq.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/faq-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/faq-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/faq-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/faq.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/faq-en.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/faq.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/faq-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/faq-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/faq-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/faq.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/faq-fr.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/faq.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/faq-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/faq-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/faq-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/faq.html" />
+  </url>
+
+  <url>
+    <loc>https://lacasadimary.it/faq-de.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://lacasadimary.it/faq.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadimary.it/faq-en.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadimary.it/faq-fr.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadimary.it/faq-de.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadimary.it/faq.html" />
+  </url>
+
 </urlset>
